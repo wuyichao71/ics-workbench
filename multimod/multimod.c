@@ -24,7 +24,7 @@ uint64_t mod(uint64_t t, uint64_t m)
   {
     if (t >= m)
       t -= m;
-    m <<= 1;
+    m >>= 1;
   }
   /* while (t >= m) */
   /*   t -= m; */
