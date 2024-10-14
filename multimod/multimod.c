@@ -19,7 +19,7 @@ uint64_t add_mod(uint64_t x, uint64_t y, uint64_t m)
 {
   uint64_t t = x + y;
   if (t < x || t < y)
-    return 0;
+    return mod(mod(t+1, m) + mod(-1ULL, m), m);
   else
     return mod(t, m);
 }
