@@ -8,10 +8,12 @@ int get_sign(uint64_t a, int i)
 
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   uint64_t result = 0;
+  printf("--------------------\n");
   for (int i = 0; i < 64; ++i)
   {
     printf("%d\n", get_sign(a, i));
   }
+  printf("--------------------\n");
   return result;
   /* return (a * b) % m; // buggy */
 }
