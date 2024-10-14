@@ -15,4 +15,5 @@ int main() {
   test(-2ULL, -2ULL, -1ULL); // should be 1
   test(-2ULL, -2ULL, -3ULL); // should be 1
   test(-2ULL, -2ULL, -4ULL); // should be 1
+  test(-2ULL, -2ULL, -5ULL); // should be 1
 }
