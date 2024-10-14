@@ -20,7 +20,7 @@ uint64_t mod(uint64_t t, uint64_t m)
 {
   int rest = 64 - get_valid(m);
   m = m << rest;
-  for (int i = rest; i > 0; i--)
+  for (int i = rest; i >= 0; i--)
   {
     if (t >= m)
       t -= m;
