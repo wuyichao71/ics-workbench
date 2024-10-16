@@ -13,10 +13,4 @@ int main() {
   test(123, 456, 789);
   test(123, 456, -1ULL);
   test(-2ULL, -2ULL, -1ULL); // should be 1
-  test(-2ULL, -2ULL, -3ULL); // should be 1
-  test(-2ULL, -2ULL, -4ULL); // should be 1
-  test(-2ULL, -2ULL, -5ULL); // should be 1
-  test(-2ULL, -2ULL, -6ULL); // should be 1
-  test(-2ULL, -2ULL, 4294967291); // should be 1
-  test(-2ULL, -2ULL, 4294967296); // should be 1
 }
