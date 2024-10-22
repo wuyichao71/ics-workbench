@@ -3,8 +3,8 @@
 
 int64_t asm_add(int64_t a, int64_t b) {
   asm(
-      "addq 1, %[t];"
-      : [t] "r"(a)
+      "addq %[t], %[t];"
+      : [t] "+r"(a)
       );
   return a;
   /* return a + b; */
