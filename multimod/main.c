@@ -12,7 +12,7 @@ void test(uint64_t a, uint64_t b, uint64_t m) {
 int main() {
   uint64_t a, b, m;
   FILE *fp = fopen("input", "r");
-  while (fscanf(fp, U64 U64 U64, &a, &b, &m) != 3)
+  while (fscanf(fp, U64 U64 U64, &a, &b, &m) == 3)
   {
     test(a, b, m);
   }
