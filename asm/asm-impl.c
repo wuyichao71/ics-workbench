@@ -48,7 +48,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
   asm(
       ".ASM_MEMCPY_BEGIN:;"
       "cmpq %[n], %[i];"
-      "jge .ASM_MEMCPY_END;"
+      "jle .ASM_MEMCPY_END;"
       "movb (%[src],%[i],1), %%al;"
       "movb %%al, (%[dest],%[i],1);"
       "incl %[i];"
