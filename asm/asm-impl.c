@@ -22,7 +22,7 @@ int asm_popcnt(uint64_t x) {
   int i = 0;
   asm(
       ".POPCNT_BEGIN:;"
-      "cmpl $64, %[c];"
+      /* "cmpl $64, %[c];" */
       "jge .POPCNT_RET;"
       /* "addl $1, %[a];" */
       /* "addl $1, %[b];" */
