@@ -22,7 +22,7 @@ int asm_popcnt(uint64_t x) {
   for (int i = 0; i < 64; i++) {
     if ((x >> i) & 1)
       asm(
-          "incr %0;"
+          "incl %0;"
           :"+r"(s)
           );
   }
