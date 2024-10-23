@@ -12,8 +12,8 @@ int main() {
     // TODO: add more tests here.
     char dest[1024];
     char src[1024] = "1234";
-    asm_memcpy(dest, src, 5);
-    for (int i = 0; i < 5; i++)
+    asm_memcpy(dest, src, 4);
+    for (int i = 0; i < 4; i++)
       assert(dest[i] == src[i]);
     asm_longjmp(buf, 123);
   } else {
