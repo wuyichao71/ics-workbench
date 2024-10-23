@@ -3,8 +3,8 @@
 
 int64_t asm_add(int64_t a, int64_t b) {
   asm(
-      "addq %esi, %edi;"
-      "movq %edi, %eax;"
+      "addq %rsi, %rdi;"
+      "movq %rdi, %rax;"
       /* "addq %[m], %[t];" */
       /* :[t] "+r"(a) */
       /* :[m] "r"(b) */
