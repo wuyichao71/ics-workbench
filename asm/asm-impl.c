@@ -25,8 +25,8 @@ int asm_popcnt(uint64_t x) {
       "cmpl $64, %[i];"
       "jge .POPCNT_RET;"
       "movl %[i], %%ecx;"
-      "shrq %%cl, %[x];"
       "movq %[x], %%rax;"
+      "shrq %%cl, %%rax;"
       "andl $1, %%eax;"
       "testq %%rax, %%rax;"
       "je .POPCNT_INCR;"
@@ -37,7 +37,7 @@ int asm_popcnt(uint64_t x) {
       ".POPCNT_RET:;"
       :[s] "+r"(s), [i] "+r"(i), [x]"+r"(x)
       :
-      : "%eax", "%ecx"
+      : "%rax", "%ecx"
       );
   return s;
 }
