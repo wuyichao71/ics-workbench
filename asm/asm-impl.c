@@ -25,15 +25,17 @@ int asm_popcnt(uint64_t x) {
       "cmpl $64, %[b];"
       "jge .POPCNT_RET;"
       "shrq $1, %[c];"
-      "andq $1, %[c];"
-      "testq %[c], %[c];"
+      "movq %[c], %%rax;"
+      "andl $1, %%eax;"
+      "testq %%rax, %%rax;"
       "je .POPCNT_INCR;"
       "incl %[a];"
       ".POPCNT_INCR:;"
       "incl %[b];"
       "jmp .POPCNT_BEGIN;"
       ".POPCNT_RET:;"
-      :[a] "+r"(s), [b] "+r"(i), [c] "+r"(x)
+      :[a] "+r"(s), [b] "+r"(i)
+      :[c] "r"(x)
       );
   return s;
 }
