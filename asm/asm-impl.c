@@ -43,7 +43,16 @@ int asm_popcnt(uint64_t x) {
 }
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
-  return memcpy(dest, src, n);
+  int i = 0;
+  for (; i < n; i++) 
+    ((char *)dest)[i] =  ((char *)src)[i];
+  /* asm( */
+  /*     : */
+  /*     :[dest]"r"(dest), [src]"r"(src), [i]"r"(i) */
+  /*     : */
+  /*     ) */
+  return dest;
+  /* return memcpy(dest, src, n); */
 }
 
 int asm_setjmp(asm_jmp_buf env) {
