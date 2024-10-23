@@ -51,14 +51,14 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
       "jge .MEMCPY_END;"
       "movb (%[src],%[i],1), %%al;"
       "movb %%al, (%[dest],%[i],1);"
-      /* "incl %[i];" */
+      "incl %[i];"
       "jmp .MEMCPY_BEGIN;"
       ".MEMCPY_END:;"
       :[i]"+r"(i)
       :[dest]"r"(dest), [src]"r"(src), [n]"r"(n)
       :"rax"
       );
-  return dest;
+  return (void *)i;
   /* for (; i < n; i++) */ 
   /*   ((char *)dest)[i] =  ((char *)src)[i]; */
   /* return dest; */
