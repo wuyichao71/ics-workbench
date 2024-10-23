@@ -34,8 +34,9 @@ int asm_popcnt(uint64_t x) {
       "incl %[b];"
       "jmp .POPCNT_BEGIN;"
       ".POPCNT_RET:;"
-      :[a] "+r"(s), [b] "+r"(i)
-      :[c] "r"(x)
+      :[a] "+r"(s), [b] "+r"(i), [c] "+r"(x)
+      :
+      :
       );
   return s;
 }
