@@ -23,7 +23,7 @@ int asm_popcnt(uint64_t x) {
     if ((x >> i) & 1)
       asm(
           "incr %0;"
-          :"r"(s)
+          :"+r"(s)
           );
   }
   return s;
