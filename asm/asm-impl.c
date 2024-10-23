@@ -36,7 +36,7 @@ int asm_popcnt(uint64_t x) {
       ".POPCNT_RET:;"
       :[a] "+r"(s), [b] "+r"(i), [c] "+r"(x)
       :
-      :
+      : "%eax"
       );
   return s;
 }
