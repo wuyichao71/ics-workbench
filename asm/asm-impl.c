@@ -43,7 +43,7 @@ int asm_popcnt(uint64_t x) {
 }
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
-  return memcpy(dest, src, n);
+  /* return memcpy(dest, src, n); */
   /* size_t i = 0; */
   /* asm( */
   /*     "cmpq %[n], %[i];" */
@@ -57,14 +57,9 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
   /*     :"rax" */
   /*     ); */
   /* return dest; */
-  /* for (; i < n; i++) */ 
-    /* ((char *)dest)[i] =  ((char *)src)[i]; */
-  /* asm( */
-  /*     : */
-  /*     :[dest]"r"(dest), [src]"r"(src), [i]"r"(i) */
-  /*     : */
-  /*     ) */
-  /* return dest; */
+  for (; i < n; i++) 
+    ((char *)dest)[i] =  ((char *)src)[i];
+  return dest;
 }
 
 int asm_setjmp(asm_jmp_buf env) {
