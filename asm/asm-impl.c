@@ -54,11 +54,11 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
       "incq %[i];"
       "jmp .MEMCPY_BEGIN;"
       ".MEMCPY_END:;"
-      :[i]"+r"(i)
-      :[dest]"r"(dest), [src]"r"(src), [n]"r"(n)
+      :[dest]"+r"(dest)
+      :[i]"r"(i), [src]"r"(src), [n]"r"(n)
       :"rax"
       );
-  return (void *)i;
+  return dest;
   /* for (; i < n; i++) */ 
   /*   ((char *)dest)[i] =  ((char *)src)[i]; */
   /* return dest; */
