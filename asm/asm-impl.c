@@ -22,21 +22,22 @@ int asm_popcnt(uint64_t x) {
   int i = 0;
   asm(
       ".POPCNT_BEGIN:;"
-      "cmpl $64, %[b];"
+      "cmpl $64, %[i];"
       "jge .POPCNT_RET;"
-      "shrq $1, %[c];"
-      "movq %[c], %%rax;"
+      "movl %[i], %%ecx;"
+      "shrq %%cl, %[x];"
+      "movq %[x], %%rax;"
       "andl $1, %%eax;"
       "testq %%rax, %%rax;"
       "je .POPCNT_INCR;"
-      "incl %[a];"
+      "incl %[s];"
       ".POPCNT_INCR:;"
-      "incl %[b];"
+      "incl %[i];"
       "jmp .POPCNT_BEGIN;"
       ".POPCNT_RET:;"
-      :[a] "+r"(s), [b] "+r"(i), [c] "+r"(x)
-      :
-      : "%eax"
+      :[s] "+r"(s)
+      :[x] "r"(x), [i] "r"(i)
+      : "%eax", "%ecx"
       );
   return s;
 }
