@@ -50,7 +50,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
       "jge .ASM_MEMCPY_END;"
       "movb (%[src],%[i],1), %%al;"
       "movb %%al, (%[dest],%[i],1);"
-      "incl %[i];"
+      "incq %[i];"
       ".ASM_MEMCPY_END:;"
       :[i]"+r"(i)
       :[dest]"r"(dest), [src]"r"(src), [n]"r"(n)
