@@ -2,20 +2,29 @@
 #include <string.h>
 
 int64_t asm_add(int64_t a, int64_t b) {
-  /* asm( */
-  /*     "addq %1, %0;" */
-  /*     /1* "addq %[m], %[t];" *1/ */
-  /*     :"+r"(a) */
-  /*     :"r"(b) */
-  /*     ); */
-  /* return a; */
-  return a + b;
+  asm(
+      "addq %1, %0;"
+      /* "addq %[m], %[t];" */
+      :"+r"(a)
+      :"r"(b)
+      );
+  return a;
+  /* return a + b; */
 }
 
 int asm_popcnt(uint64_t x) {
+  /* int s = 0; */
+  /* for (int i = 0; i < 64; i++) { */
+  /*   if ((x >> i) & 1) s++; */
+  /* } */
+  /* return s; */
   int s = 0;
   for (int i = 0; i < 64; i++) {
-    if ((x >> i) & 1) s++;
+    if ((x >> i) & 1)
+      asm(
+          "incr %0;"
+          :"r"(s)
+          );
   }
   return s;
 }
