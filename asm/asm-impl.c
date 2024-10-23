@@ -24,7 +24,7 @@ int asm_popcnt(uint64_t x) {
       ".POPCNT_BEGIN:;"
       "cmpl $64, %[b];"
       "jge .POPCNT_RET;"
-      "andq $1, %[c];"
+      "andl $1, %[c];"
       "testq %[a], %[a];"
       "je .POPCNT_INCR;"
       "incl %[a];"
