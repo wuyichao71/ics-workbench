@@ -10,6 +10,11 @@ int main() {
     /* printf("%d\n", asm_popcnt(0x0123456789abcdefULL)); */
     assert(asm_popcnt(0x0123456789abcdefULL) == 32);
     // TODO: add more tests here.
+    char dest[1024];
+    char src[1024] = "1234";
+    asm_memcpy(dest, src, 5);
+    for (int i = 0; i < 5; i++)
+      assert(dest[i] == src[i]);
     asm_longjmp(buf, 123);
   } else {
     assert(r == 123);
