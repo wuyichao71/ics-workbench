@@ -44,14 +44,18 @@ int asm_popcnt(uint64_t x) {
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
   size_t i = 0;
+  asm(
+      "cmpq %[n], %[i];"
+      "jge .ASM_MEMCPY_END;"
+      "movb (%[src],%[i],1), %%al;"
+      "movb %%al, (%[dest],%[i],1);"
+      "incq %[i];"
+      ".ASM_MEMCPY_END:;"
+      :
+      :[dest]"r"(dest), [src]"r"(src), [i]"r"(i), [n]"r"(n)
+      :"rax"
+      );
   for (; i < n; i++) 
-    asm(
-        "movb (%[src],%[i],1), %%al;"
-        "movb %%al, (%[dest],%[i],1);"
-        :
-        :[dest]"r"(dest), [src]"r"(src), [i]"r"(i)
-        :"rax"
-        );
     /* ((char *)dest)[i] =  ((char *)src)[i]; */
   /* asm( */
   /*     : */
