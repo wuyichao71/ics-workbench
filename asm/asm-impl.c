@@ -21,9 +21,15 @@ int asm_popcnt(uint64_t x) {
   int s = 0;
   int i = 0;
   asm(
-      "incl %0;"
-      :"+r"(s)
-      :"r"(x), "m"(i)
+      ".POPCNT_BEGIN:;"
+      "cmpl $64, %[c];"
+      "jge .POPCNT_RET;"
+      "incl %[a];"
+      "incr %[b];"
+      "jmp .POPCNT_BEGIN;"
+      ".POPCNT_RET:;"
+      :[a] "+r"(s), [b] "+r"(i)
+      :[c] "r"(x)
       );
   return s;
 }
