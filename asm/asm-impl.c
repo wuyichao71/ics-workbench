@@ -5,8 +5,10 @@ int64_t asm_add(int64_t a, int64_t b) {
   asm(
       "addq %1, %0;"
       /* "addq %[m], %[t];" */
-      :"+r"(a)
-      :"r"(b)
+      /* :"+r"(a) */
+      /* :"r"(b) */
+      :"+m"(a)
+      :"m"(b)
       );
   return a;
   /* return a + b; */
