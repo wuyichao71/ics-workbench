@@ -45,7 +45,14 @@ int asm_popcnt(uint64_t x) {
 void *asm_memcpy(void *dest, const void *src, size_t n) {
   int i = 0;
   for (; i < n; i++) 
-    ((char *)dest)[i] =  ((char *)src)[i];
+    asm(
+        "movb (%[src],%[i],1), %%al;"
+        "movb %%al, (%[dest],%[i],1);"
+        :
+        :[dest]"r"(dest), [src]"r"(src), [i]"r"(i)
+        :"rax"
+        )
+    /* ((char *)dest)[i] =  ((char *)src)[i]; */
   /* asm( */
   /*     : */
   /*     :[dest]"r"(dest), [src]"r"(src), [i]"r"(i) */
