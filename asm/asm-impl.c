@@ -44,7 +44,7 @@ int asm_popcnt(uint64_t x) {
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
   /* return memcpy(dest, src, n); */
-  /* size_t i = 0; */
+  size_t i = 0;
   /* asm( */
   /*     "cmpq %[n], %[i];" */
   /*     "jge .ASM_MEMCPY_END;" */
