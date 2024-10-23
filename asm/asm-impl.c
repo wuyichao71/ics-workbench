@@ -22,9 +22,8 @@ int asm_popcnt(uint64_t x) {
   int i = 0;
   asm(
       "incl %0;"
-      :"r"(x)
-      :"r"(i)
       :"+r"(s)
+      :"r"(x), "r"(i)
       )
   return s;
 }
