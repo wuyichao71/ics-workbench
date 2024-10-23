@@ -51,7 +51,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
         :
         :[dest]"r"(dest), [src]"r"(src), [i]"r"(i)
         :"rax"
-        )
+        );
     /* ((char *)dest)[i] =  ((char *)src)[i]; */
   /* asm( */
   /*     : */
