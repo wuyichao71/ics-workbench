@@ -72,11 +72,12 @@ int asm_setjmp(asm_jmp_buf env) {
       "movq %%r13, 0x18(%[env])\n\t"
       "movq %%r14, 0x20(%[env])\n\t"
       "movq %%r15, 0x28(%[env])\n\t"
+      "movq %0, %%rax"
       :
       :[env]"r"(env)
-      :"memory"
+      :"rax", "memory"
       );
-  return 0;
+  return;
 }
 
 void asm_longjmp(asm_jmp_buf env, int val) {
