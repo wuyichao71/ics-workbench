@@ -93,10 +93,11 @@ void asm_longjmp(asm_jmp_buf env, int val) {
       "movq 0x28(%[env]), %%r15\n\t"
       "movq 0x30(%[env]), %%rsp\n\t"
       "movq 0x38(%[env]), %%rdx\n\t"
-      "movq %[val], %%rax\n\t"
+      "movq %[val], %%eax\n\t"
       "jmp *%%rdx"
       :
       :[env]"r"(env), [val]"r"(val)
-      :"rax", "rbx", "rbp");
+      :"rax", "rbx"
+      );
   /* longjmp(env, val); */
 }
