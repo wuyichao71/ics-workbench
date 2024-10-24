@@ -94,6 +94,10 @@ void asm_longjmp(asm_jmp_buf env, int val) {
       "movq 0x30(%[env]), %%rsp\n\t"
       "movq 0x38(%[env]), %%rdx\n\t"
       "movl %[val], %%eax\n\t"
+      "testl %%eax, %%eax\n\t"
+      "jne .LONGJMP_RET\n\t"
+      "movl $1, %%eax\n\t"
+      ".LONGJMP_RET:\n\t"
       "jmp *%%rdx"
       :
       :[env]"r"(env), [val]"r"(val)
