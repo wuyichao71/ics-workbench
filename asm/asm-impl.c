@@ -72,9 +72,9 @@ int asm_setjmp(asm_jmp_buf env) {
       "movq %%r13, 0x18(%[env])\n\t"
       "movq %%r14, 0x20(%[env])\n\t"
       "movq %%r15, 0x28(%[env])\n\t"
-      "lea 8(%%rsp), %%rax\n\t"
+      "lea 8(%%rsp), %%rdx\n\t"
       "movq %%rdx, 0x30(%[env])\n\t"
-      "movq (%%rsp), %%rax\n\t"
+      "movq (%%rsp), %%rdx\n\t"
       "movq %%rdx, 0x38(%[env])\n\t"
       :
       :[env]"r"(env)
