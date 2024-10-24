@@ -20,12 +20,12 @@ int main() {
     for (int i = 0; i < 4; i++)
       assert(dest[i] == src[i]);
     printf("Finish check of 'asm_memcpy'\n");
-    /* asm_longjmp(buf, 123); */
-    asm_longjmp(buf, 0);
+    asm_longjmp(buf, 123);
+    /* asm_longjmp(buf, 0); */
     /* printf("%d\n", __WORDSIZE); */
   } else {
-    /* assert(r == 123); */
-    assert(r == 1);
+    assert(r == 123);
+    /* assert(r == 1); */
     printf("PASSED.\n");
   }
 }
