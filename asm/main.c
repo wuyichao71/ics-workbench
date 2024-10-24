@@ -21,7 +21,7 @@ int main() {
       assert(dest[i] == src[i]);
     printf("Finish check of 'asm_memcpy'\n");
     asm_longjmp(buf, 123);
-    printf("%d\n", __WORDSIZE);
+    /* printf("%d\n", __WORDSIZE); */
   } else {
     assert(r == 123);
     printf("PASSED.\n");
