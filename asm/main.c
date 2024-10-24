@@ -11,7 +11,7 @@ int main() {
     // TODO: add more tests here.
     printf("%d\n", asm_popcnt(0x0123456789abcdefULL));
     assert(asm_popcnt(0x0123456789abcdefULL) == 32);
-    printf("Finish check of 'asm_popcnt'\n");
+    printf("Finish check of asm_popcnt'\n");
     char dest[1024];
     char src[1024] = "1234";
     asm_memcpy(dest, src, 4);
