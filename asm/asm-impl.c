@@ -64,44 +64,44 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 }
 
 int asm_setjmp(asm_jmp_buf env) {
-  /* return setjmp(env); */
-  asm volatile(
-      "movq %%rbx, (%[env])\n\t"
-      "movq %%rbp, 0x8(%[env])\n\t"
-      "movq %%r12, 0x10(%[env])\n\t"
-      "movq %%r13, 0x18(%[env])\n\t"
-      "movq %%r14, 0x20(%[env])\n\t"
-      "movq %%r15, 0x28(%[env])\n\t"
-      "lea 8(%%rsp), %%rdx\n\t"
-      "movq %%rdx, 0x30(%[env])\n\t"
-      "movq (%%rsp), %%rdx\n\t"
-      "movq %%rdx, 0x38(%[env])\n\t"
-      :
-      :[env]"r"(env)
-      :"rdx", "memory"
-      );
-  return 0;
+  return setjmp(env);
+  /* asm volatile( */
+  /*     "movq %%rbx, (%[env])\n\t" */
+  /*     "movq %%rbp, 0x8(%[env])\n\t" */
+  /*     "movq %%r12, 0x10(%[env])\n\t" */
+  /*     "movq %%r13, 0x18(%[env])\n\t" */
+  /*     "movq %%r14, 0x20(%[env])\n\t" */
+  /*     "movq %%r15, 0x28(%[env])\n\t" */
+  /*     "lea 8(%%rsp), %%rdx\n\t" */
+  /*     "movq %%rdx, 0x30(%[env])\n\t" */
+  /*     "movq (%%rsp), %%rdx\n\t" */
+  /*     "movq %%rdx, 0x38(%[env])\n\t" */
+  /*     : */
+  /*     :[env]"r"(env) */
+  /*     :"rdx", "memory" */
+  /*     ); */
+  /* return 0; */
 }
 
 void asm_longjmp(asm_jmp_buf env, int val) {
-  asm volatile(
-      "movq (%[env]), %%rbx\n\t"
-      "movq 0x8(%[env]), %%rbp\n\t"
-      "movq 0x10(%[env]), %%r12\n\t"
-      "movq 0x18(%[env]), %%r13\n\t"
-      "movq 0x20(%[env]), %%r14\n\t"
-      "movq 0x28(%[env]), %%r15\n\t"
-      "movq 0x30(%[env]), %%rsp\n\t"
-      "movq 0x38(%[env]), %%rdx\n\t"
-      "movl %[val], %%eax\n\t"
-      "testl %%eax, %%eax\n\t"
-      "jne .LONGJMP_RET\n\t"
-      "movl $1, %%eax\n\t"
-      ".LONGJMP_RET:\n\t"
-      "jmp *%%rdx"
-      :
-      :[env]"r"(env), [val]"r"(val)
-      :"rax", "rbp", "rbx", "r12", "r13", "r14", "r15", "rdx", "rsp"
-      );
-  /* longjmp(env, val); */
+  longjmp(env, val);
+  /* asm volatile( */
+  /*     "movq (%[env]), %%rbx\n\t" */
+  /*     "movq 0x8(%[env]), %%rbp\n\t" */
+  /*     "movq 0x10(%[env]), %%r12\n\t" */
+  /*     "movq 0x18(%[env]), %%r13\n\t" */
+  /*     "movq 0x20(%[env]), %%r14\n\t" */
+  /*     "movq 0x28(%[env]), %%r15\n\t" */
+  /*     "movq 0x30(%[env]), %%rsp\n\t" */
+  /*     "movq 0x38(%[env]), %%rdx\n\t" */
+  /*     "movl %[val], %%eax\n\t" */
+  /*     "testl %%eax, %%eax\n\t" */
+  /*     "jne .LONGJMP_RET\n\t" */
+  /*     "movl $1, %%eax\n\t" */
+  /*     ".LONGJMP_RET:\n\t" */
+  /*     "jmp *%%rdx" */
+  /*     : */
+  /*     :[env]"r"(env), [val]"r"(val) */
+  /*     :"rax", "rbp", "rbx", "r12", "r13", "r14", "r15", "rdx", "rsp" */
+  /*     ); */
 }
