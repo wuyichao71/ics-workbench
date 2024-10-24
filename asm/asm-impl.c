@@ -4,7 +4,7 @@
 int64_t asm_add(int64_t a, int64_t b) {
   /* return a + b; */
   asm(
-      "addq %[b], %[a];"
+      "addq %[b], %[a]"
       /* "addq %[m], %[t];" */
       :[a] "+a"(a)
       :[b] "r"(b)
@@ -21,20 +21,20 @@ int asm_popcnt(uint64_t x) {
   int s = 0;
   int i = 0;
   asm(
-      ".POPCNT_BEGIN:;"
-      "cmpl $64, %[i];"
-      "jge .POPCNT_RET;"
-      "movl %[i], %%ecx;"
-      "movq %[x], %%rax;"
-      "shrq %%cl, %%rax;"
-      "andl $1, %%eax;"
-      "testq %%rax, %%rax;"
-      "je .POPCNT_INCR;"
-      "incl %[s];"
-      ".POPCNT_INCR:;"
-      "incl %[i];"
-      "jmp .POPCNT_BEGIN;"
-      ".POPCNT_RET:;"
+      ".POPCNT_BEGIN:\n\t"
+      "cmpl $64, %[i]\n\t"
+      "jge .POPCNT_RET\n\t"
+      "movl %[i], %%ecx\n\t"
+      "movq %[x], %%rax\n\t"
+      "shrq %%cl, %%rax\n\t"
+      "andl $1, %%eax\n\t"
+      "testq %%rax, %%rax\n\t"
+      "je .POPCNT_INCR\n\t"
+      "incl %[s]\n\t"
+      ".POPCNT_INCR:\n\t"
+      "incl %[i]\n\t"
+      "jmp .POPCNT_BEGIN\n\t"
+      ".POPCNT_RET:\n\t"
       :[s] "+r"(s)
       :[i]"r"(i), [x]"r"(x)
       : "%rax", "%ecx"
