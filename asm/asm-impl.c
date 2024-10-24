@@ -45,7 +45,7 @@ int asm_popcnt(uint64_t x) {
 void *asm_memcpy(void *dest, const void *src, size_t n) {
   /* return memcpy(dest, src, n); */
   size_t i = 0;
-  asm(
+  asm volatile (
       ".MEMCPY_BEGIN:;"
       "cmpq %[n], %[i];"
       "jge .MEMCPY_END;"
@@ -54,9 +54,9 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
       "incq %[i];"
       "jmp .MEMCPY_BEGIN;"
       ".MEMCPY_END:;"
-      :[dest]"+r"(dest)
-      :[i]"r"(i), [src]"r"(src), [n]"r"(n)
-      :"rax"
+      :
+      :[i]"r"(i), [src]"r"(src), [n]"r"(n), [dest]"+r"(dest)
+      :"rax", "memory"
       );
   return dest;
   /* for (; i < n; i++) */ 
