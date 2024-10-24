@@ -97,6 +97,6 @@ void asm_longjmp(asm_jmp_buf env, int val) {
       "jmp *%%rdx"
       :
       :[env]"r"(env), [val]"r"(val)
-      :"rbx", "rbp");
+      :"rax", "rbx", "rbp");
   /* longjmp(env, val); */
 }
