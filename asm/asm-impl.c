@@ -64,22 +64,22 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 }
 
 int asm_setjmp(asm_jmp_buf env) {
-  /* return setjmp(env); */
-  asm volatile(
-      "movq %%rbx, (%[env])\n\t"
-      "movq %%rbp, 0x8(%[env])\n\t"
-      "movq %%r12, 0x10(%[env])\n\t"
-      "movq %%r13, 0x18(%[env])\n\t"
-      "movq %%r14, 0x20(%[env])\n\t"
-      "movq %%r15, 0x28(%[env])\n\t"
-      "movq (%%rsp), %%rax\n\t"
-      "movq %%rax, 0x30(%[env])\n\t"
-      "lea 8(%%rsp), %%rax\n\t"
-      "movq %%rax, 0x38(%[env])\n\t"
-      :
-      :[env]"r"(env)
-      :"rax", "memory"
-      );
+  return setjmp(env);
+  /* asm volatile( */
+  /*     "movq %%rbx, (%[env])\n\t" */
+  /*     "movq %%rbp, 0x8(%[env])\n\t" */
+  /*     "movq %%r12, 0x10(%[env])\n\t" */
+  /*     "movq %%r13, 0x18(%[env])\n\t" */
+  /*     "movq %%r14, 0x20(%[env])\n\t" */
+  /*     "movq %%r15, 0x28(%[env])\n\t" */
+  /*     "movq (%%rsp), %%rax\n\t" */
+  /*     "movq %%rax, 0x30(%[env])\n\t" */
+  /*     "lea 8(%%rsp), %%rax\n\t" */
+  /*     "movq %%rax, 0x38(%[env])\n\t" */
+  /*     : */
+  /*     :[env]"r"(env) */
+  /*     :"rax", "memory" */
+  /*     ); */
   return 0;
 }
 
