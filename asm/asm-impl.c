@@ -46,14 +46,14 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
   /* return memcpy(dest, src, n); */
   size_t i = 0;
   asm volatile (
-      ".MEMCPY_BEGIN:;"
-      "cmpq %[n], %[i];"
-      "jge .MEMCPY_END;"
-      "movb (%[src],%[i],1), %%al;"
-      "movb %%al, (%[dest],%[i],1);"
-      "incq %[i];"
-      "jmp .MEMCPY_BEGIN;"
-      ".MEMCPY_END:;"
+      ".MEMCPY_BEGIN:\n\t"
+      "cmpq %[n], %[i]\n\t"
+      "jge .MEMCPY_END\n\t"
+      "movb (%[src],%[i],1), %%al\n\t"
+      "movb %%al, (%[dest],%[i],1)\n\t"
+      "incq %[i]\n\t"
+      "jmp .MEMCPY_BEGIN\n\t"
+      ".MEMCPY_END:\n\t"
       :
       :[i]"r"(i), [src]"r"(src), [n]"r"(n), [dest]"r"(dest)
       :"rax", "memory"
