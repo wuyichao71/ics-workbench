@@ -9,8 +9,8 @@ int main() {
     assert(asm_add(1234, 5678) == 6912);
     assert(asm_popcnt(0x0123456789abcdefULL) == 32);
     // TODO: add more tests here.
-    printf("%d\n", asm_popcnt(0x0123456789abcdefULL));
-    assert(asm_popcnt(0x0123456789abcdefULL) == 32);
+    assert(asm_popcnt(0b0) == 0);
+    assert(asm_popcnt(0b01) == 1);
     printf("Finish check of asm_popcnt'\n");
     char dest[1024];
     char src[1024] = "1234";
